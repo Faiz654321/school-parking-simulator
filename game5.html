@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>School Parking Simulator</title>
+<link rel="icon" href="img/logo.png" type="image/png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app">
+
+<!-- MENU -->
+<section id="menu" class="screen active">
+  <header class="top">
+    <img src="img/logo.png" alt="">
+    <div><h1>Parkir Pintar</h1><p id="m-sub"></p></div>
+  </header>
+  <p class="who"><span id="m-kelas"></span> · <span id="m-badge"></span></p>
+  <div class="stats">
+    <div><small>Skor terbaik</small><b id="m-best">0</b></div>
+    <div><small>Level terbuka</small><b id="m-plays">1/10</b></div>
+  </div>
+  <button class="btn" id="b-start">Mulai bertugas</button>
+  <button class="btn alt" id="b-levels">Pilih level</button>
+  <button class="btn alt" id="b-help">Cara bertugas</button>
+  <a class="btn alt" href="dashboard.html">Kembali ke dashboard</a>
+</section>
+
+<!-- GAME -->
+<section id="game" class="screen">
+  <div class="hud">
+    <div><small>Level</small><b id="h-lv"></b></div>
+    <div><small>Waktu</small><b id="h-time"></b></div>
+    <div><small>Nyawa</small><b id="h-hit"></b></div>
+    <div><small>Skor</small><b id="h-score"></b></div>
+  </div>
+  <canvas id="cv" width="360" height="560" aria-label="Area parkir belakang sekolah"></canvas>
+  <p id="hint" class="hint" role="status"></p>
+  <button class="btn alt" id="b-quit">Akhiri shift</button>
+  <div id="over" class="over" hidden>
+    <div class="panel">
+      <h2 id="o-title"></h2>
+      <p id="o-text"></p>
+      <button class="btn" id="o-next" hidden>Level berikutnya</button>
+      <button class="btn alt" id="o-again">Ulangi level</button>
+      <button class="btn alt" id="o-menu">Kembali ke menu</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<dialog id="help">
+  <h2>Cara bertugas</h2>
+  <ol>
+    <li>Kendaraan masuk lewat <b>jalur masuk</b> di kiri bawah dan menunggu di antrean.</li>
+    <li>Ketuk <b>slot kosong</b> untuk memarkirkan kendaraan paling depan. Mobil ke area mobil, motor ke area motor.</li>
+    <li>Parkir benar <b>+100</b>. Kendaraan berlabel oranye (buru-buru) bernilai <b>+200</b> tetapi kesabarannya lebih singkat. Lima parkir benar berturut-turut memberi kombo <b>+50</b>.</li>
+    <li>Salah area: <b>−50</b> poin dan nyawa −1.</li>
+    <li>Kendaraan berlabel <b>KELUAR</b> ingin pulang lewat <b>jalur keluar</b>. Ketuk slotnya agar petugas membantu (+50).</li>
+    <li>Ada <b>2 petugas parkir</b>: petugas mobil (oranye) di area mobil dan petugas motor (hijau) di area motor. Kendaraan akan berjalan begitu jalurnya kosong, jadi tidak saling bertabrakan.</li>
+    <li>Antrean terlalu lama atau kendaraan tidak dibantu keluar mengurangi nyawa.</li>
+    <li>Ada 10 level. Area parkir diperluas sampai level 8 (lahan berpalang kuning-hitam belum bisa dipakai). Makin tinggi level, makin ramai dan nyawa makin sedikit.</li>
+  </ol>
+  <form method="dialog"><button class="btn">Mengerti</button></form>
+</dialog>
+<dialog id="levels">
+  <h2>Pilih level</h2>
+  <div id="lv-grid" class="lvgrid"></div>
+  <form method="dialog"><button class="btn alt">Tutup</button></form>
+</dialog>
+
+<script src="gamehub.js"></script>
+<script>if(!GameHub.requireLogin())throw new Error("Belum login")</script>
+<script src="script.js"></script>
+</body>
+</html>
